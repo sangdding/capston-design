@@ -1,24 +1,25 @@
-# agora_chat_client
+# Commit Convention
 
-## Project setup
-```
-npm install
-```
+### 1. commit message structure
+    type : subject
+    
+    body
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+    footer
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### 2. commit type
+    * Feat: add new function
+    * Fix : fix bug
+    * Docs : modify document
+    * Style : code formatiing, or nothing changed
+    * Refactor : code refactoring
+    * Test : add test code
+    * Chore : build or package manager changed
+### 3. commit example
+    Feat: "회원 가입 기능 구현"
 
-### Lints and fixes files
-```
-npm run lint
-```
+    SMS, 이메일 중복 확인 API 개발
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+    Resolves: #123
+    Ref: #456
+    Related to: #48, #45
