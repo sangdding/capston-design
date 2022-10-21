@@ -3,16 +3,16 @@
    <h1>아고라</h1>
  </div>
   <div>
-    <api-get/>
+    <makeRoomForm/>
   </div>
 </template>
 
 <script>
-import apiGet from "@/components/script/apiGet";
+import makeRoomForm from "@/components/makeRoomForm";
 export default {
-  name: "agoraRoom",
+  name: "makeRoom",
   components: {
-    apiGet,
+    makeRoomForm,
   }
 };
 </script>
