@@ -1,17 +1,26 @@
 <template>
   <div>
-    <form v-on:submit.prevent="LoginForm">
+    <form v-on:submit.prevent="RegisterForm">
       <div>
         <label for="userId"></label>
         <input id="userId" type="text" v-model="userId">
       </div>
       <div>
+        <label for="email"></label>
+        <input id="email" type="email" v-model="email">
+      </div>
+      <div>
         <label for="password"></label>
         <input id="password" type="text" v-model="password">
       </div>
-      <button type="submit">로그인</button>
+      <div>
+        <label for="nickname"></label>
+        <input id="nickname" type="text" v-model="nickname">
+      </div>
+      <button type="submit">회원가입</button>
     </form>
   </div>
+
 </template>
 
 <script>
@@ -19,16 +28,18 @@ export default {
   data: function () {
     return {
       userId: '',
+      email: '',
       password: '',
+      nickname: ''
     }
   },
   methods: {
-    LoginForm: function () {
-      this.axios.post("/main/login")
-          .then(function (response) {
+    RegisterForm: function () {
+      this.axios.post("/register")
+          .then(function (response){
             console.log(response);
           })
-          .catch(function (error) {
+          .then(function (error){
             console.log(error);
           })
     }

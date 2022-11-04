@@ -1,20 +1,38 @@
 <template>
   <div>
-    <div>
-      <nav>로그인</nav>
-    </div>
-    <div>
-      <LoginForm/>
-    </div>
+    <form v-on:submit.prevent="LoginForm">
+      <div>
+        <label for="userId"></label>
+        <input id="userId" type="text" v-model="userId">
+      </div>
+      <div>
+        <label for="password"></label>
+        <input id="password" type="text" v-model="password">
+      </div>
+      <button type="submit">로그인</button>
+    </form>
   </div>
 </template>
 
 <script>
-import LoginForm from "@/components/LoginForm";
-
 export default {
-  name: "LoginView",
-  components: {LoginForm}
+  data: function () {
+    return {
+      userId: '',
+      password: '',
+    }
+  },
+  methods: {
+    LoginForm: function () {
+      this.axios.post("/login")
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+    }
+  }
 }
 </script>
 
