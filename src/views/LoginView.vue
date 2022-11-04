@@ -2,11 +2,11 @@
   <div>
     <form v-on:submit.prevent="LoginForm">
       <div>
-        <label for="userId"></label>
+        <label for="userId">ID</label>
         <input id="userId" type="text" v-model="userId">
       </div>
       <div>
-        <label for="password"></label>
+        <label for="password">PW</label>
         <input id="password" type="text" v-model="password">
       </div>
       <button type="submit">로그인</button>
