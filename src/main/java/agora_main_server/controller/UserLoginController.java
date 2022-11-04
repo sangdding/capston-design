@@ -1,6 +1,7 @@
 package agora_main_server.controller;
 
 import agora_main_server.dto.UserFormDto;
+import agora_main_server.entity.User;
 import agora_main_server.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -28,6 +29,7 @@ public class UserLoginController {
     @PostMapping(value = "/register")
     public String register(@RequestParam UserFormDto userFormDto) {
         log.info("#register page");
+        userService.saveUser(userService.createUser(userFormDto));
         return "/login";
     }
 

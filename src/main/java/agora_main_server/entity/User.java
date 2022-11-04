@@ -42,15 +42,4 @@ public class User {
         this.nickname = nickname;
         this.role = role;
     }
-
-    public static User createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder) {
-        User user = User.builder()
-                .userId(userFormDto.getUserId())
-                .email(userFormDto.getEmail())
-                .password(passwordEncoder.encode(userFormDto.getPassword()))
-                .nickname(userFormDto.getNickname())
-                .role(UserRole.USER)
-                .build();
-        return user;
-    }
 }
