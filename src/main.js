@@ -6,7 +6,7 @@ import axios from "axios"
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios;
 
-const app = new Vue({
+new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
