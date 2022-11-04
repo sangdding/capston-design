@@ -1,17 +1,15 @@
 package agora_main_server.entity;
 
-import agora_main_server.dto.UserFormDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @Getter
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
