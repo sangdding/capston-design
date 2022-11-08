@@ -2,19 +2,19 @@
   <div>
     <form v-on:submit.prevent="RegisterForm">
       <div>
-        <label for="userId"></label>
+        <label for="userId">ID</label>
         <input id="userId" type="text" v-model="userId">
       </div>
       <div>
-        <label for="email"></label>
+        <label for="email">E-mail</label>
         <input id="email" type="email" v-model="email">
       </div>
       <div>
-        <label for="password"></label>
+        <label for="password">PW</label>
         <input id="password" type="text" v-model="password">
       </div>
       <div>
-        <label for="nickname"></label>
+        <label for="nickname">별명</label>
         <input id="nickname" type="text" v-model="nickname">
       </div>
       <button type="submit">회원가입</button>
