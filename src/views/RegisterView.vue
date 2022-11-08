@@ -42,8 +42,16 @@ export default {
         nickname: this.nickname
       }
       this.axios.post("/register", data)
-          .then(function (response){
-            console.log(response);
+          .then((response) => {
+            let result = response.data.resultCode
+            let message = response.data.message
+            if (result === 'success') {
+              alert("회원가입이 완료되었습니다!");
+              this.$router.push({path: '/login'});
+            } else {
+              alert(message)
+              this.$router.go(this.$router.currentRoute)
+            }
           })
           .then(function (error){
             console.log(error);
