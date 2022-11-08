@@ -5,7 +5,7 @@ const router = createRouter({
     history : createWebHistory(),
     routes : [ // path별 cogit mponent를 추가한다.
         {
-            path: "/agora",
+            path: "/",
             name: "agora",
             component: AgoraView
         }
