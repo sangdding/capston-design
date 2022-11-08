@@ -35,7 +35,13 @@ export default {
   },
   methods: {
     RegisterForm: function () {
-      this.axios.post("/register")
+      var data = {
+        userId: this.userId,
+        eamil: this.email,
+        password: this.password,
+        nickname: this.nickname
+      }
+      this.axios.post("/register", data)
           .then(function (response){
             console.log(response);
           })
