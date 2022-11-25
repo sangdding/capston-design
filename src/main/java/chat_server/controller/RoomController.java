@@ -6,10 +6,7 @@ import chat_server.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,10 +31,11 @@ public class RoomController {
 
     // 채팅방 개설
     @PostMapping(value = "/makeRoom")
-    public ResultDto<Object> create(@RequestBody ChatRoomDto chatRoomDto) {
+    @ResponseBody
+    public ResultDto<Object> create(@RequestBody ChatRoomDto chatRoomDTO) {
         log.info("#Make Rooms");
         try {
-            chatRoomService.createRoom(chatRoomDto);
+            chatRoomService.createRoom(chatRoomDTO);
             return ResultDto.ofSuccess("success", null);
         } catch (Exception e) {
             return ResultDto.ofFail(e.getMessage());
