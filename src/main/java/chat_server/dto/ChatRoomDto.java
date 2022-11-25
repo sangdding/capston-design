@@ -16,7 +16,11 @@ public class ChatRoomDto {
 
     private String name;
     private String password;
-//    private Set<WebSocketSession> sessions = new HashSet<>();
+
+    public ChatRoomDto(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
 
     @Builder
     public ChatRoomDto(ChatRoom chatRoom) {
