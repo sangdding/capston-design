@@ -3,6 +3,13 @@
     <div>
       <h1>아고라</h1>
     </div>
+    <div>
+      <ul v-for="name in roomList" :key="name">
+        <li>
+          {{name}}
+        </li>
+      </ul>
+    </div>
     <ModalView v-if="isModalViewed" @close-modal="isModalViewed=false">
       <MakeRoomView/>
     </ModalView>
@@ -22,6 +29,21 @@ export default {
   data() {
     return {
       isModalViewed: false,
+      roomList: []
+    }
+  },
+  created() {
+    this.getRoomList()
+  },
+  methods: {
+     getRoomList: function () {
+      this.axios.get("/chats/")
+          .then(response => {
+            this.roomList = response.data.data
+          })
+          .catch(function() {
+            this.roomList = null
+          })
     }
   }
 };
