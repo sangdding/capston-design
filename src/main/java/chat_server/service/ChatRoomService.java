@@ -1,6 +1,7 @@
 package chat_server.service;
 
-import chat_server.dto.ChatRoomDto;
+import chat_server.dto.ChatRoomReqDto;
+import chat_server.dto.ChatRoomResDto;
 import chat_server.dto.ResultDto;
 import chat_server.entity.ChatRoom;
 import chat_server.repository.ChatRoomRepository;
@@ -17,19 +18,20 @@ public class ChatRoomService {
 
     private final ChatRoomRepository chatRoomRepository;
 
-    public void createRoom(ChatRoomDto chatRoomDTO) throws Exception {
+    public void createRoom(ChatRoomReqDto chatRoomReqDTO) {
         chatRoomRepository.save(
                     ChatRoom.builder()
-                        .name(chatRoomDTO.getName())
-                        .password(chatRoomDTO.getPassword()).build());
+                        .name(chatRoomReqDTO.getName())
+                        .password(chatRoomReqDTO.getPassword())
+                            .roomId(chatRoomReqDTO.getRoomId()).build());
     }
 
-    public List<ChatRoomDto> findAllRoom() {
-        return chatRoomRepository.findAll().stream().map(ChatRoomDto::new).collect(Collectors.toList());
+    public List<ChatRoomResDto> findAllRoom() {
+        return chatRoomRepository.findAll().stream().map(ChatRoomResDto::new).collect(Collectors.toList());
     }
 
-    public ResultDto<ChatRoomDto> findRoom(String name) {
+    public ResultDto<ChatRoomResDto> findRoom(String name) {
         Optional<ChatRoom> room = chatRoomRepository.findByName(name);
-        return room.map(chatRoom -> ResultDto.ofSuccess("success", new ChatRoomDto(chatRoom))).orElseGet(() -> ResultDto.ofFail("채팅방이 존재하지 않습니다."));
+        return room.map(chatRoom -> ResultDto.ofSuccess("success", new ChatRoomResDto(chatRoom))).orElseGet(() -> ResultDto.ofFail("채팅방이 존재하지 않습니다."));
     }
 }

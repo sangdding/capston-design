@@ -23,9 +23,13 @@ public class ChatRoom {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "roomId")
+    private String roomId;
+
     @Builder
-    public ChatRoom(String name, String password) {
+    public ChatRoom(String name, String password, String roomId) {
         this.name = name;
         this.password = password;
+        this.roomId = roomId;
     }
 }
