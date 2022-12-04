@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/chats")
 @Log4j2
@@ -32,7 +32,6 @@ public class RoomController {
 
     // 채팅방 개설
     @PostMapping(value = "/makeRoom")
-    @ResponseBody
     public ResultDto<Object> create(@RequestBody ChatRoomReqDto chatRoomReqDTO) {
         log.info("#Make Rooms");
         try {
