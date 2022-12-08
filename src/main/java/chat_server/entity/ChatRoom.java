@@ -5,12 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serial;
+import java.io.Serializable;
 
 @Getter
 @Entity
 @NoArgsConstructor
 @Table(name = "chatrooms")
-public class ChatRoom {
+public class ChatRoom implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 6494678977089006639L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
