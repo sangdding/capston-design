@@ -1,16 +1,22 @@
 <template>
-  <nav>
-    <ul>
-      <li>
-        <router-link to="/login">로그인</router-link>
-        <router-view/>
-      </li>
-      <li>
-        <router-link to="/register">회원가입</router-link>
-        <router-view/>
-      </li>
-    </ul>
-  </nav>
+  <b-container>
+    <div id="login-button">
+      <router-link to="/login">
+        <b-button variant="primary">
+          로그인
+        </b-button>
+      </router-link>
+      <router-view/>
+    </div>
+    <div id="register-button">
+      <router-link to="/register">
+        <b-button variant="outline-primary">
+          회원가입
+        </b-button>
+      </router-link>
+      <router-view/>
+    </div>
+  </b-container>
 </template>
 
 <script>

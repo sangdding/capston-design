@@ -1,16 +1,33 @@
 <template>
   <div>
-    <form v-on:submit.prevent="LoginForm">
-      <div>
-        <label for="userId">ID</label>
-        <input id="userId" type="text" v-model="userId">
-      </div>
-      <div>
-        <label for="password">PW</label>
-        <input id="password" type="text" v-model="password">
-      </div>
-      <button type="submit">로그인</button>
-    </form>
+    <b-form v-on:submit.prevent="LoginForm">
+      <b-form-group
+          id="userId"
+          label="ID:"
+          label-for="userId"
+      >
+        <b-form-input
+            id="userId"
+            type="text"
+            v-model="userId"
+            placeholder="Enter ID"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group
+          id="password"
+          label="password:"
+          label-for="password"
+          description="비밀번호는 영문자와 숫자를 조합한 8자 이상의 문자열입니다."
+      >
+        <b-form-input
+            id="password"
+            type="text"
+            v-model="password"
+            placeholder="Enter password"
+        ></b-form-input>
+      </b-form-group>
+      <b-button type="submit" variant="primary">로그인</b-button>
+    </b-form>
   </div>
 </template>
 
