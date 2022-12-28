@@ -4,8 +4,8 @@
       <h1>아고라</h1>
     </div>
     <div>
-      <ul v-for="name in roomList" :key="name">
-        <li>
+      <ul>
+        <li v-for="name in roomList" :key="name" v-on:click="enterRoom(name.roomId)">
           {{name}}
         </li>
       </ul>
@@ -39,11 +39,20 @@ export default {
      getRoomList: function () {
       this.axios.get("/chats/")
           .then(response => {
+            console.log(response)
             this.roomList = response.data.data
           })
-          .catch(function() {
-            this.roomList = null
+          .catch(error => {
+            alert(error.message)
           })
+    },
+    enterRoom: function(roomId) {
+       var sender = prompt('대화명을 입력해 주세요.');
+       if (sender != "") {
+         localStorage.setItem('wschat.sender', sender);
+         localStorage.setItem('wschat.roomId', roomId);
+         location.href="chat/room";
+       }
     }
   }
 };
