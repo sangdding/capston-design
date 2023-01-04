@@ -3,14 +3,14 @@
   <body>
   <div>
     <h2>
-      {{room.name}}
+      {{ room.name }}
     </h2>
   </div>
   <input type="text" v-model="message" v-on:keypress.enter="sendMessage">
   <button type="button" @clic="sendMessage">보내기</button>
   <ul>
     <li v-for="message in messages" :key="message">
-      {{message.sender}} - {{message.message}}
+      {{ message.sender }} - {{ message.message }}
     </li>
   </ul>
   </body>
@@ -38,51 +38,51 @@ export default {
   created() {
     this.roomId = localStorage.getItem('wschat.roomId')
     this.sender = localStorage.getItem('wschat.sender')
-    this.findRoom();
-    connect();
+    this.connect();
   },
   methods: {
-    findRoom: function () {
-      this.axios.get('/chat/room/' + this.roomId).then(response => {
-        this.room = response.data;
-      });
-    },
     sendMessage: function () {
+      var t = this
       ws.send("/pub/chat/message", {}, JSON.stringify({
         type: 'TALK',
-        roomId: this.roomId,
-        sender: this.sender,
-        message: this.message
+        roomId: t.roomId,
+        sender: t.sender,
+        message: t.message
       }));
       this.message = '';
     },
     recvMessage: function (recv) {
-      this.message.unshift({
+      this.messages.unshift({
         "type": recv.type,
         "sender": recv.type == 'ENTER' ? '[알림]' : recv.sender,
         "message": recv.message
       })
+    },
+    connect: function () {
+      var t = this;
+      ws.connect({}, () => {
+        console.log(this)
+        ws.subscribe("/sub/chat/room/" + t.roomId, function (message) {
+          var recv = JSON.parse(message.body);
+          t.recvMessage(recv);
+        });
+        ws.send("/pub/chat/message", {}, JSON.stringify({
+          type: 'ENTER',
+          roomId: t.roomId,
+          sender: t.sender
+        }))
+      }, function (error) {
+        if (reconnect++ <= 5) {
+          setTimeout(function () {
+            console.log(error.message);
+            sock = new SockJS("http://localhost:8080/ws-stomp");
+            ws = Stomp.over(sock);
+            this.connect();
+          }, 10 * 1000);
+        }
+      })
     }
   }
-}
-
-function connect() {
-  ws.connect({}, function () {
-    ws.subscribe("/sub/chat/room/" + this.data.roomId, function (message) {
-      var recv = JSON.parse(message.body);
-      this.recvMessage(recv);
-    });
-    ws.send("/pub/chat/message", {}, JSON.stringfy({type: 'ENTER', roomId: this.data.roomId, sender: this.data.sender}))
-  }, function (error) {
-    if (reconnect++ <= 5) {
-      setTimeout(function () {
-        console.log(error.message);
-        sock = new SockJS("http://localhost:8080/ws-stomp");
-        ws = Stomp.over(sock);
-        connect();
-      }, 10 * 1000);
-    }
-  })
 }
 </script>
 
