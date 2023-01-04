@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: local
   jpa:
     properties:
       hibernate:
@@ -8,9 +10,6 @@ spring:
     hibernate:
       ddl-auto: create
     database-platform: org.hibernate.dialect.H2Dialect
-  redis:
-    host: 127.0.0.1
-    port: '6379'
   datasource:
     driverClassName: org.h2.Driver
     password: ''
@@ -20,6 +19,3 @@ spring:
     console:
       path: /h2-console
       enabled: 'true'
-  config:
-    activate:
-      on-profile: local
