@@ -34,4 +34,5 @@ public class ChatRoomService {
         Optional<ChatRoom> room = chatRoomRepository.findByName(name);
         return room.map(chatRoom -> ResultDto.ofSuccess("success", new ChatRoomResDto(chatRoom))).orElseGet(() -> ResultDto.ofFail("채팅방이 존재하지 않습니다."));
     }
+
 }
