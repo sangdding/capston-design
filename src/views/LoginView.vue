@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     LoginForm: function () {
-      this.axios.post("/login")
+      this.axios.post("main/login")
           .then(function (response) {
             console.log(response);
           })

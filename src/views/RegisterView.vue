@@ -73,7 +73,7 @@ export default {
         password: this.password,
         nickname: this.nickname
       }
-      this.axios.post("/register", data)
+      this.axios.post("main/register", data)
           .then((response) => {
             let result = response.data.resultCode
             let message = response.data.message
