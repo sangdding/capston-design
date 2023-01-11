@@ -1,4 +1,9 @@
+server:
+  port: 64412
+
 spring:
+  application:
+    name: main-service
   h2:
     console:
       enabled: true
@@ -16,6 +21,17 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+eureka:
+  instance:
+    instance-id: user-microservice-instance
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
 
 logging.level:
   org.hibernate.SQL: debug
