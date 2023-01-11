@@ -17,7 +17,6 @@
           id="password"
           label="password:"
           label-for="password"
-          description="비밀번호는 영문자와 숫자를 조합한 8자 이상의 문자열입니다."
       >
         <b-form-input
             id="password"
@@ -26,7 +25,19 @@
             placeholder="Enter password"
         ></b-form-input>
       </b-form-group>
-      <b-button type="submit" variant="primary">로그인</b-button>
+      <div class="row">
+        <div id="login-button" class="col-3">
+          <b-button type="submit" variant="primary">로그인</b-button>
+        </div>
+        <div id="register-button" class="col-3">
+          <router-link to="/register">
+            <b-button variant="outline-primary">
+              회원가입
+            </b-button>
+          </router-link>
+          <router-view/>
+        </div>
+      </div>
     </b-form>
   </div>
 </template>
