@@ -3,6 +3,7 @@ package authorization.service;
 import authorization.dto.UserDto;
 import authorization.entity.User;
 import authorization.entity.UserType;
+import authorization.repository.MemoryRepository;
 import authorization.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final MemoryRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
 
